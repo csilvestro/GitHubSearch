@@ -12,13 +12,21 @@ body {
 
 /* unvisited link */
 a:link {
+<<<<<<< HEAD
   /* color: white; */
+=======
+  /* color: white; */ 
+>>>>>>> 4ffdf3680092bdaf8ce6ec50c5c3c754470e1d1b
   text-decoration: blue;
 }
 
 /* visited link */
 a:visited {
+<<<<<<< HEAD
   color: white;
+=======
+  /* color: blue; */
+>>>>>>> 4ffdf3680092bdaf8ce6ec50c5c3c754470e1d1b
 }
 
 /* mouse over link */
@@ -33,4 +41,9 @@ a:active {
 
 ul {
   list-style-type: none; 
+<<<<<<< HEAD
 }
+=======
+  padding: 0;
+}
+>>>>>>> 4ffdf3680092bdaf8ce6ec50c5c3c754470e1d1b

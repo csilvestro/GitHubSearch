@@ -32,6 +32,10 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: '4%',
+<<<<<<< HEAD
+=======
+    paddingTop: '4%',
+>>>>>>> 4ffdf3680092bdaf8ce6ec50c5c3c754470e1d1b
     color: '#0b69da',
     fontSize: '0.85em',
     // borderTop: '1px solid lightgrey'

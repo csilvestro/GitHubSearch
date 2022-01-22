@@ -27,13 +27,21 @@ const styles= {
     searchForm: {
         display: 'flex',
         flexDirection: 'column',
+<<<<<<< HEAD
         width: '50%'
+=======
+        width: '70%',
+        paddingTop:'5%',
+        paddingBottom: '5%',
+        borderBottom: '1px solid grey'
+>>>>>>> 4ffdf3680092bdaf8ce6ec50c5c3c754470e1d1b
     },
     title: {
         fontSize: '1.5em'
     },
     inputBx: {
         display: 'flex',
+<<<<<<< HEAD
         flexDirection: 'row'
     },
     input: {
@@ -41,5 +49,16 @@ const styles= {
         padding: '1%',
         marginRight: '1%',
         border: '2px solid grey'
+=======
+        flexDirection: 'row',
+        paddingBottom: '2%'
+    },
+    input: {
+        width: '800px',
+        padding: '0.5%',
+        marginRight: '1%',
+        border: '2px solid lightgrey',
+        borderRadius: '10px'
+>>>>>>> 4ffdf3680092bdaf8ce6ec50c5c3c754470e1d1b
     }
 }

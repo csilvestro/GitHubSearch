@@ -3,6 +3,7 @@ A clone of the Github User Search feature
 # Author: 
 Crystal Silvestro
 ## Branches
-Main
-Production 
+Main - Latest Production version
+Production .s
 Dev - Working
+Pagination - Added Pagination then merged to the main.
