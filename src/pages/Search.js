@@ -20,6 +20,7 @@ function Search() {
   const [searchResultsloading, setsearchResultsloading] = useState(false);
   const [currentPage, setcurrentPage] = useState(0);
   const [pageCount, setpageCount] = useState(0);
+  const [totalCount, settotalCount] = useState([]);
   let limit = 10;
 
   useEffect(() => {
@@ -89,20 +90,38 @@ function Search() {
   // Pagination 
   const changeCurrentPage = numPage => {
     setcurrentPage({ currentPage: numPage });
-    // searchRepos();
-    // let currentPage = numPage.selected + 1;
-    // const pagesFromApi = fetchPages(currentPage);
-    // setRepos(pagesFromApi);
+    searchRepos();
+    let currentPage = numPage.selected + 1;
+    const pagesFromApi = searchRepos(currentPage);
+    setRepos(pagesFromApi);
   };
+  useEffect(() => {
+    async function fetchTotalCount(){
+      const response = await axios.get(
+        `https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc&page=1&per_page=10`
+      );
+      const data = await response.json();
+      const [totalcount] = data.total_count
+      console.log(totalcount);
+      settotalCount(totalcount)
+    }
+    fetchTotalCount();
+  }, []);
 
-  // const fetchPages = async (currentPage) => {
-  //   const res = await fetch(
-  //     `https://api.github.com/repos/${username}/${repoName}_page=${currentPage}&_limit=${limit}`
-  //   );
-  //   const data = await res.json();
-  //   return data; 
-  // };
 
+  const baseUrl: string = 'https://api.worldbank.org/v2/country/'
+
+const getIndicatorByCountry = async (country: string, indicator: string, page:number=1): Promise<[]> => {  
+  const query = `${baseUrl}/${country}/indicator/${indicator}?page=${page}&format=json`
+  const response = await axios.get(query)  
+  const data = response.data
+
+  if (data[0].pages > page) {
+    return data.concat(await getIndicatorByCountry(country, indicator, page+1)) 
+  } else {
+    return data
+  }
+}
 
   return (
     <section style={styles.container}>
@@ -114,7 +133,7 @@ function Search() {
       /> 
       <div style={styles.lowerCont}>
         <div style={styles.left}>
-          <p style={styles.p}>{pageCount} repostory results</p> 
+          <p style={styles.p}>{totalCount} repostory results</p> 
           <ul style={styles.repoList}>
             {repos.map(renderRepo)}
           </ul>
