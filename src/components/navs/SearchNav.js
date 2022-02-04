@@ -1,45 +1,74 @@
 import React from 'react';
 //React Router
-import { Link } from 'react-router-dom';
-// import { SiDeepin } from 'react-icons/si'; 
-// import { MdDashboard, MdAttachMoney } from 'react-icons/md';
-// import { HiBriefcase } from 'react-icons/hi';
-// import { BsFillPiggyBankFill } from 'react-icons/bs'; 
-// import { FaMoneyBillWave } from 'react-icons/fa'; 
+import { Link } from 'react-router-dom'; 
 
 const SearchNav = () =>{
     return (
       <nav style={styles.nav}>
-        <Link to="/Dashboard" style={styles.padding}>Repositories</Link>
-        <Link to="/Reports" style={styles.padding}>Code</Link>
-        <Link to="/Income" style={styles.padding}>Commits</Link>
-        <Link to="/Spending"style={styles.padding}>Issues</Link> 
-        <Link to="/Savings" style={styles.padding}>Discussions</Link> 
-        <Link to="/Savings" style={styles.padding}>Packages</Link> 
-        <Link to="/Savings" style={styles.padding}>Marketplace</Link> 
-        <Link to="/Savings" style={styles.padding}>Topics</Link> 
-        <Link to="/Savings" style={styles.padding}>Wikis</Link> 
-        <Link to="/Savings" style={styles.padding}>Users</Link> 
+        <div style={styles.linkCont}>
+          <Link to="/Dashboard" style={styles.padding}>Repositories</Link>
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Reports" style={styles.padding}>Code</Link>
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Income" style={styles.padding}>Commits</Link>
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Spending"style={styles.padding}>Issues</Link> 
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Savings" style={styles.padding}>Discussions</Link>
+          <Link to="/Dashboard" style={styles.padding}>12k</Link> 
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Savings" style={styles.padding}>Packages</Link> 
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Savings" style={styles.padding}>Marketplace</Link> 
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Savings" style={styles.padding}>Topics</Link> 
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Savings" style={styles.padding}>Wikis</Link>
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
+        <div style={styles.linkCont}>
+          <Link to="/Savings" style={styles.padding}>Users</Link>
+          <Link to="/Dashboard" style={styles.padding}>12k</Link>
+        </div>
       </nav>
     );
   }
-export default SearchNav
+export default SearchNav;
 
 const styles = {
   nav:  {
     display: 'flex',
     flexDirection: 'column',
-    fontSize: '1.5rem',
-    alignItems: 'center',
-    backgroundColor: '#474044',
-    padding: '1rem',
+    fontSize: '0.9rem',
     color: 'white',
+    border: '1px solid lightgrey',
+    borderRadius: 7,
+    width: 200,
+    margin: 25,
   },
   padding: {
-    paddingBottom: '26px',
-    border: '1px solid grey',
-    width: 300,
-    borderRadius: 30
-    // alignItems: 'center'
+    padding: 10,
+    color: 'black',
+    alignItems: 'center'
+  },
+  linkCont: {
+    display:'flex',
+    justifyContent: 'space-between',
+    borderBottom: '1px solid lightgrey',
   }
-}
+};
