@@ -1,51 +1,66 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import SearchForm from '../components/SearchForm';
 import SearchList from '../components/SearchList';
-import ReactPaginate from 'react-paginate';
-//Helped get the url for github repo links.
-//Lets Build a React Project W/ The GitHub API
-// https://www.youtube.com/watch?v=QSzTx2y-Wys
-// Pagination
-// Simple and light weight react pagination
-// isaurssaurav.github.io/react-paginatio
-// Github API Documentation
-// https://www.npmjs.com/package/react-pagination-js
-
+// import SearchResults from '../pages/SearchResults';
+// import ReactPaginate from 'react-paginate';
+//React Router
+import { Link } from 'react-router-dom';
 function Search() {
-  const [username, setUsername] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [repos, setRepos] = useState([]);
-  const [searchResults, setsearchResults] = useState([]);
-  const [searchResultsloading, setsearchResultsloading] = useState(false);
-  const [currentPage, setcurrentPage] = useState(0);
-  const [pageCount, setpageCount] = useState(0);
-  const [totalCount, settotalCount] = useState([]);
-  let limit = 10;
+  // const [searchTerm, setsearchTerm] = useState("");
+  const [searchTerm, setsearchTerm] = useState(null);
+  // const [username] = useState('')
+  // const [loading, setLoading] = useState(false);
+  // const [repos, setRepos] = useState([]);
+  // const [searchResults, setsearchResults] = useState([]);
+  // const [searchResultsloading, setsearchResultsloading] = useState(false);
+  // const [currentPage, setcurrentPage] = useState(0);
+  // const [pageCount, setpageCount] = useState(0);
+  // const [totalCount, settotalCount] = useState([]);
+  // let limit = 10;
 
   useEffect(() => {
-    setRepos([]);
-    setsearchResults({});
-  },[username]);
+    async function fetchAPI(){
+      // const response = await axios({
+      //         method: 'get',
+      //         url: `https://api.github.com/users/${username}/repos`,
+      // })
 
-  // Search Button
-  function submitSearch(e){
-    console.log("Stop clicking me");
-    console.log(username);
-    e.preventDefault();
-    searchRepos();
-  }
+      const response = await fetch('https://randomuser.me/api/');
+      const data = await response.json();
+      const [user] = data.results;
+      // const [user] = data.results.map(user => ({
+      //   firstName: `${user.name.first}`,
+      // }));
+      // const [user] = data.results.results.map(user => setsearchTerm({
+      //           firstName: `${user.name.first}`,
+      //           lastName: `${user.name.last}`,
+      //           username: `${user.login.username}`}))
+      console.log(user)
+      setsearchTerm(user);
+    }
+    fetchAPI();
+  }, []);
+
+
+  // // Search Button
+  // function submitSearch(e){
+  //   console.log("Stop clicking me");
+  //   console.log(username);
+  //   e.preventDefault();
+  //   searchRepos();
+  // }
 
   // Get Users Repos
-  function searchRepos(){
-    setLoading(true);
-    axios({
-        method: 'get',
-        url: `https://api.github.com/users/${username}/repos`,
-      }).then(resp => {
-        setLoading(false);
-        setRepos(resp.data)
-      });
+  // function searchRepos(){
+  //   setLoading(true);
+  //   axios({
+  //       method: 'get',
+  //       url: `https://api.github.com/users/${username}/repos`,
+  //     }).then(resp => {
+  //       setLoading(false);
+  //       setRepos(resp.data)
+  //     });
       // axios({
       //   method: 'get',
       //   url: `https://api.github.com/user/repos?${currentPage}&per_page=5`
@@ -63,81 +78,83 @@ function Search() {
       //   console.log(Math.ceil(total/12));
       //   setUsername(data);
       // } 
-  }
+  // }
 
   //Display Search List
-  function renderRepo(repo){
-    return(
-        <li key={repo.id} onClick={() => getResults(repo.name)} style={styles.ltNav}>
-          {repo.name}
-        </li>
-    )
-  }
+  // function renderRepo(repo){
+  //   return(
+  //       <li key={repo.id} onClick={() => getResults(repo.name)} style={styles.ltNav}>
+  //         {repo.name}
+  //       </li>
+  //   )
+  // }
 
   //Display repo details
-  function getResults(repoName){
-    setsearchResultsloading(true);
-      axios({
-        method: 'get',
-        url: `https://api.github.com/repos/${username}/${repoName}`,
-      }).then(resp => {
-        setsearchResultsloading(false);
-        setsearchResults(resp.data)
-      });
-      console.log(searchResults)  
-  };
+  // function getResults(repoName){
+  //   setsearchResultsloading(true);
+  //     axios({
+  //       method: 'get',
+  //       url: `https://api.github.com/repos/${username}/${repoName}`,
+  //     }).then(resp => {
+  //       setsearchResultsloading(false);
+  //       setsearchResults(resp.data)
+  //     });
+  //     console.log(searchResults)  
+  // };
 
   // Pagination 
-  const changeCurrentPage = numPage => {
-    setcurrentPage({ currentPage: numPage });
-    searchRepos();
-    let currentPage = numPage.selected + 1;
-    const pagesFromApi = searchRepos(currentPage);
-    setRepos(pagesFromApi);
-  };
-  useEffect(() => {
-    async function fetchTotalCount(){
-      const response = await axios.get(
-        `https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc&page=1&per_page=10`
-      );
-      const data = await response.json();
-      const [totalcount] = data.total_count
-      console.log(totalcount);
-      settotalCount(totalcount)
-    }
-    fetchTotalCount();
-  }, []);
+  // const changeCurrentPage = numPage => {
+  //   setcurrentPage({ currentPage: numPage });
+  //   searchRepos();
+  //   let currentPage = numPage.selected + 1;
+  //   const pagesFromApi = searchRepos(currentPage);
+  //   setRepos(pagesFromApi);
+  // };
 
 
-  const baseUrl: string = 'https://api.worldbank.org/v2/country/'
+  // useEffect(() => {
+  //   async function fetchTotalCount(){
+  //     const response = await axios.get(
+  //       `https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc&page=1&per_page=10`
+  //     );
+  //     const data = await response.json();
+  //     const [totalcount] = data.total_count
+  //     console.log(totalcount);
+  //     settotalCount(totalcount)
+  //   }
+  //   fetchTotalCount();
+  // }, []);
 
-const getIndicatorByCountry = async (country: string, indicator: string, page:number=1): Promise<[]> => {  
-  const query = `${baseUrl}/${country}/indicator/${indicator}?page=${page}&format=json`
-  const response = await axios.get(query)  
-  const data = response.data
 
-  if (data[0].pages > page) {
-    return data.concat(await getIndicatorByCountry(country, indicator, page+1)) 
-  } else {
-    return data
-  }
-}
+//   const baseUrl: string = 'https://api.worldbank.org/v2/country/'
+
+// const getIndicatorByCountry = async (country: string, indicator: string, page:number=1): Promise<[]> => {  
+//   const query = `${baseUrl}/${country}/indicator/${indicator}?page=${page}&format=json`
+//   const response = await axios.get(query)  
+//   const data = response.data
+
+//   if (data[0].pages > page) {
+//     return data.concat(await getIndicatorByCountry(country, indicator, page+1)) 
+//   } else {
+//     return data
+//   }
+// }
 
   return (
     <section style={styles.container}>
       <SearchForm 
-        username={username} 
-        setUsername={setUsername} 
-        submitSearch={submitSearch} 
-        searchBtn={loading ? "Loading..." : "Search"} 
+        // searchTerm={searchTerm} 
+        // setUsername={setUsername} 
+        // submitSearch={submitSearch} 
+        // searchBtn={loading ? "Loading..." : "Search"} 
       /> 
       <div style={styles.lowerCont}>
-        <div style={styles.left}>
-          <p style={styles.p}>{totalCount} repostory results</p> 
+        {/* <div style={styles.left}> */}
+          {/* <p style={styles.p}>{totalCount} repostory results</p> 
           <ul style={styles.repoList}>
             {repos.map(renderRepo)}
-          </ul>
-          <div style={styles.paginate}>
+          </ul> */}
+          {/* <div style={styles.paginate}>
             {repos.length > 0 ? (
               <ReactPaginate
                 previousLabel={"previous"}
@@ -161,15 +178,37 @@ const getIndicatorByCountry = async (country: string, indicator: string, page:nu
               ) : (
                 <span>No User Repos to display</span>
               )}
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         <div style={styles.right}>
-          <SearchList 
-            searchResults={searchResults} 
-            repos={repos}
-            loading={searchResultsloading} 
-          />
+          {/* <SearchList searchTerm /> */}
+        
+          {/* {searchTerm && <SearchList 
+            // searchResults={searchTerm.login.username} 
+            fName={searchTerm.name.first} 
+            // repos={repos}
+            // loading={searchResultsloading} 
+          />}*/}
+
+
+
+          {searchTerm && <SearchList
+              avatar={searchTerm.picture.large} 
+              fname={searchTerm.name.first}
+              lname={searchTerm.name.last}
+              street={searchTerm.location.street.number}
+              city={searchTerm.location.city}
+              state={searchTerm.location.state}
+              zipcode={searchTerm.location.postcode}
+              email={searchTerm.email}
+              phone={searchTerm.phone}
+          />}
         </div>
+
+            <div>
+              <Link to="/SearchResults" style={styles.padding}>Search Results</Link>
+            </div>
+
       </div>
     </section>
   );

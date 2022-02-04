@@ -10,11 +10,11 @@ const SearchForm = props => {
                 <input
                     type="text"
                     style={styles.input}
-                    value={props.username}
-                    onChange={e => {props.setUsername(e.target.value)}}
+                    value={props.searchTerm}
+                    onChange={e => {props.setsearchTerm(e.target.value)}}
                     placeholder="Search GitHub"
                 />
-                <SearchBtn {...props} />
+                <SearchBtn searchBtn="Search " />
             </div>
             <p>ProTip! For an advanced search, use some of our prefixes.</p>
         </form>
@@ -48,3 +48,35 @@ const styles= {
         borderRadius: '10px'
     }
 }
+
+
+
+
+
+
+
+// function IncomeForm({ addIncome }) {
+//     const [value, setValue] = useState("");
+
+//     const valdateForm = e => {
+//         e.preventDefault();
+//         if (!value) return;
+//         addIncome(value);
+//         setValue("");
+//     };
+
+//     return (
+//         <form onSubmit={valdateForm} style={styles.IncomeForm}>
+//             <p>Add Income:</p>
+//             <input
+//                 type="text"
+//                 style={styles.input}
+//                 value={value}
+//                 onChange={e => setValue(e.target.value)}
+//             />
+//             <MyBtn myBtn="Add Income"/>
+//         </form>
+//     );
+// }
+
+// export default IncomeForm

@@ -9,7 +9,7 @@ import Issues from './pages/Issues';
 import Marketplace from './pages/Marketplace'; 
 import Explore from './pages/Explore';
 import Notifications from './pages/Notifications';
-
+import SearchResults from './pages/SearchResults';
 function App() {
   return (
       <div style={styles.container}>
@@ -23,6 +23,7 @@ function App() {
             <Route path='/Marketplace' element={<Marketplace />} />
             <Route path='/Explore' element={<Explore />} />
             <Route path='/Notifications' element={<Notifications />} />
+            <Route path='/SearchResults' element={<SearchResults />} />
           </Routes>
         </section>
         <Footer />
