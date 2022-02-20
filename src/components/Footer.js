@@ -34,13 +34,13 @@ const styles = {
     paddingLeft: '4%',
     paddingTop: '4%',
     color: '#0b69da',
-    fontSize: '0.85em',
+    fontSize: '0.80em',
     // borderTop: '1px solid lightgrey'
   },
   copyright: {
     display: 'flex',
     alignItems: 'center',
-    color: 'grey',
+    color: 'darkgrey',
     paddingRight: '1%',
   },
   link: {

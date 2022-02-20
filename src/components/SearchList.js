@@ -1,26 +1,22 @@
 import React from 'react';
-// import { BiBookBookmark, BiHelpCircle } from 'react-icons/bi';
-// import { AiOutlineStar } from 'react-icons/ai';
-// import { BsFillCalendarCheckFill, BsChatSquareDots } from 'react-icons/bs';
+import { BiBookBookmark, BiHelpCircle } from 'react-icons/bi';
+import { AiOutlineStar } from 'react-icons/ai';
+import { BsFillCalendarCheckFill, BsChatSquareDots } from 'react-icons/bs';
 
-const SearchList = ( props ) => {  
+const SearchList = ({userData}) => {  
     // if (loading) {
     //     return(<p>Loading...</p>)
     // }
     return (
-        <article style={styles.list}>
-            {props.fname}fname
-            <div>{props.lname}lname</div>
-            {/* <input type='text' style={styles.myInput} value={props.fName} placeholder='First Name' /> */}
-            {/* <h1>{searchResults.login.username}user</h1> */}
-            {/* <h4><a href={searchResults.html_url}><BiBookBookmark /> {searchResults.full_name}</a></h4>
-            <p>{searchResults.description}</p>          
-            <p style={styles.p}>                
-                <span style={styles.p}><AiOutlineStar /> {searchResults.stargazers_count}</span>
-                <span style={styles.p}><BsChatSquareDots /> {searchResults.language}</span>
-                <span style={styles.p}><BsFillCalendarCheckFill /> {new Date(searchResults.pushed_at).toLocaleDateString()}</span>
-                <span style={styles.p}><BiHelpCircle /> {searchResults.open_issues_count} need help</span>
-            </p> */}
+        <article style={styles.list} key={userData.id}>
+            {userData.avatar_url ? (<div className="dataitem"><img src={userData.avatar_url} alt="avatar" /></div>) : (<div></div>)}
+            {userData.login ? (<div className="dataitem">Login: {userData.login}</div>) : (<div></div>)}
+            {userData.name ? (<div className="dataitem">Name : {userData.name}</div>) : (<div></div>)}
+            {userData.blog ? (<div className="dataitem">Blog: {userData.blog}</div>) : (<div></div>)}
+            {userData.company ? (<h1>Company: {userData.company}</h1>) : (<div></div>)}
+            {userData.repos_url ? (<h4><a href={userData.repos_url}><BiBookBookmark /> {userData.type}</a></h4>) : (<div></div>)}
+            {userData.url ? (<p>{userData.url}</p> ) : (<div></div>)}
+
         </article>
     )
 }

@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
 // import axios from 'axios';
 import SearchForm from '../components/SearchForm';
-import SearchList from '../components/SearchList';
+// import SearchList from '../components/SearchList';
+// import Scroll from '../components/Scroll';
 // import SearchResults from '../pages/SearchResults';
 // import ReactPaginate from 'react-paginate';
 //React Router
 import { Link } from 'react-router-dom';
 function Search() {
-  // const [searchTerm, setsearchTerm] = useState("");
-  const [searchTerm, setsearchTerm] = useState(null);
+  const [searchTerm, setsearchTerm] = useState("");
   // const [username] = useState('')
   // const [loading, setLoading] = useState(false);
   // const [repos, setRepos] = useState([]);
-  // const [searchResults, setsearchResults] = useState([]);
+  // const [searchResults, setsearchResults] = useState("");
   // const [searchResultsloading, setsearchResultsloading] = useState(false);
   // const [currentPage, setcurrentPage] = useState(0);
   // const [pageCount, setpageCount] = useState(0);
@@ -30,7 +30,9 @@ function Search() {
       const data = await response.json();
       const [user] = data.results;
       // const [user] = data.results.map(user => ({
-      //   firstName: `${user.name.first}`,
+      //     firstName: `${user.name.first}`,
+      //     lastName: `${user.name.last}`,
+      //     username: `${user.login.username}`
       // }));
       // const [user] = data.results.results.map(user => setsearchTerm({
       //           firstName: `${user.name.first}`,
@@ -42,7 +44,43 @@ function Search() {
     fetchAPI();
   }, []);
 
+  //Display Repos
+  // const displayRepos = setsearchTerm.map((users) => {
+  //   return(
+  //     <li>{users.name.first}</li>
+      
+  //   )
+  // })
 
+  // const filteredPersons = details.filter(
+  //   person => {
+  //     return (
+  //       person
+  //       .name
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase()) ||
+  //       person
+  //       .email
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase())
+  //     );
+  //   }
+  // );
+
+  const addSearch = term => {
+    const newTerm = [...searchTerm, { term }];
+    setsearchTerm(newTerm);
+    // setsearchTerm(e.target.value);
+    console.log('Searched')
+  };
+
+  // function searchList() {
+  //   return (
+  //     <Scroll>
+  //       <SearchList filteredPersons={filteredPersons} />
+  //     </Scroll>
+  //   );
+  // }
   // // Search Button
   // function submitSearch(e){
   //   console.log("Stop clicking me");
@@ -143,12 +181,27 @@ function Search() {
   return (
     <section style={styles.container}>
       <SearchForm 
+        addSearch={addSearch}
         // searchTerm={searchTerm} 
-        // setUsername={setUsername} 
-        // submitSearch={submitSearch} 
+        // setsearchTerm={setsearchTerm} 
+        // searchSubmit={searchSubmit} 
         // searchBtn={loading ? "Loading..." : "Search"} 
       /> 
+      {/* <input type="text" onChange={(event) => handleSearch(event)} /> */}
+      {/* {displayRepos} */}
+      {/* <div style={{padding:10}}>
+        {searchResults.map((value,index)=>{
+          return(
+          <div key={value.id}>
+            <div style={styles}>
+            {value.title}
+            </div>
+          </div>
+          )
+          })}
+      </div> */}
       <div style={styles.lowerCont}>
+        
         {/* <div style={styles.left}> */}
           {/* <p style={styles.p}>{totalCount} repostory results</p> 
           <ul style={styles.repoList}>
@@ -189,10 +242,16 @@ function Search() {
             // repos={repos}
             // loading={searchResultsloading} 
           />}*/}
+          {/* {searchTerm.map((searchTerm, id) => (
+                      <SearchList
+                        key={id}
+                        id={id}
+                        searchTerm={searchTerm}
+                        // removeIncome={removeIncome}
+                      />
+                    ))}   */}
 
-
-
-          {searchTerm && <SearchList
+          {/* {searchTerm && <SearchList
               avatar={searchTerm.picture.large} 
               fname={searchTerm.name.first}
               lname={searchTerm.name.last}
@@ -202,11 +261,14 @@ function Search() {
               zipcode={searchTerm.location.postcode}
               email={searchTerm.email}
               phone={searchTerm.phone}
-          />}
+          />} */}
         </div>
 
             <div>
               <Link to="/SearchResults" style={styles.padding}>Search Results</Link>
+              <Link to="/SearchNew" style={styles.padding}>Search New</Link>
+              <Link to="/SearchPag" style={styles.padding}>Pagination</Link>
+              <Link to="/SearchLast" style={styles.padding}>SearchLast</Link>
             </div>
 
       </div>

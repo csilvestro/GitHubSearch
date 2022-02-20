@@ -10,6 +10,10 @@ import Marketplace from './pages/Marketplace';
 import Explore from './pages/Explore';
 import Notifications from './pages/Notifications';
 import SearchResults from './pages/SearchResults';
+import SearchNew from './pages/SearchNew';
+import SearchPag from './pages/SearchPag';
+import SearchLast from './pages/SearchLast';
+
 function App() {
   return (
       <div style={styles.container}>
@@ -24,6 +28,9 @@ function App() {
             <Route path='/Explore' element={<Explore />} />
             <Route path='/Notifications' element={<Notifications />} />
             <Route path='/SearchResults' element={<SearchResults />} />
+            <Route path='/SearchNew' element={<SearchNew />} />
+            <Route path='/SearchPag' element={<SearchPag />} />
+            <Route path='/SearchLast' element={<SearchLast />} />
           </Routes>
         </section>
         <Footer />

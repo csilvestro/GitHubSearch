@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchBtn from './buttons/SearchBtn';
 import { IoSearchOutline } from 'react-icons/io5';
 
-const SearchForm = props => {
+function SearchForm ({ username, setUsername }){
+
+    const [value, setValue] = useState("");
+
+    const validateForm = e => {
+        e.preventDefault();
+        if(!value) return;
+        setUsername(value);
+        setValue("");
+    }; 
+
     return (
-        <form onSubmit={props.submitSearch} style={styles.searchForm}>
-            <p style={styles.title}><IoSearchOutline /> Search more than 83M users</p>
+        <form onSubmit={validateForm} style={styles.searchForm}>
+            <p style={styles.title}><IoSearchOutline /> Search more than <strong>85M</strong> users</p>
             <div style={styles.inputBx}>
                 <input
                     type="text"
                     style={styles.input}
-                    value={props.searchTerm}
-                    onChange={e => {props.setsearchTerm(e.target.value)}}
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                    // onKeyUp={e => setValue(e.target.value)}
+                    // onPaste={e => setValue(e.target.value)}
                     placeholder="Search GitHub"
                 />
                 <SearchBtn searchBtn="Search " />
             </div>
-            <p>ProTip! For an advanced search, use some of our prefixes.</p>
+            <p style={styles.subTitle}><strong>ProTip! </strong>For an advanced search, use some of our prefixes.</p>
         </form>
     );
 }
@@ -27,13 +39,16 @@ const styles= {
     searchForm: {
         display: 'flex',
         flexDirection: 'column',
-        width: '70%',
-        paddingTop:'5%',
+        width: '80%',
+        paddingTop:'10%',
         paddingBottom: '5%',
-        borderBottom: '1px solid grey'
+        borderBottom: '0.75px solid lightgrey'
     },
     title: {
         fontSize: '1.5em'
+    },
+    subTitle: {
+        fontSize: '0.85em'
     },
     inputBx: {
         display: 'flex',
@@ -41,11 +56,12 @@ const styles= {
         paddingBottom: '2%'
     },
     input: {
-        width: '800px',
-        padding: '0.5%',
+        width: '850px',
+        paddingLeft: '2%',
         marginRight: '1%',
-        border: '2px solid lightgrey',
-        borderRadius: '10px'
+        border: '1px solid lightgrey',
+        borderRadius: '5px',
+        fontSize: '0.9em'
     }
 }
 

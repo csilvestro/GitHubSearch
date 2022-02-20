@@ -11,10 +11,11 @@ export default SearchBtn
 
 const styles = {
   button: {
-    padding: '1% 2%',
-    // border: '1px solid grey',
-    borderRadius: '10px',
+    padding: '0.5% 3%',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
+    fontSize: '0.85em',
     fontWeight: 'bold',
-    backgroundColor: 'whitesmoke'
+    backgroundColor: 'ghostwhite'
   }
 }

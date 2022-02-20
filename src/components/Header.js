@@ -1,6 +1,7 @@
 import React from 'react';
 import { BiPlus } from 'react-icons/bi';
 import { IoNotificationsOutline } from 'react-icons/io5';
+import { VscTriangleDown } from 'react-icons/vsc';
 import Avatar from '../images/avatar.jpg';
 import Logo from '../images/GitHubLogo.png';
 import { Link } from "react-router-dom";
@@ -18,8 +19,8 @@ const Header = () => {
         
         <div style={styles.rightSide}>
           <Link to='notifications'><IoNotificationsOutline /></Link>
-          <Link to='new'><BiPlus /></Link>
-          <Link to='profile'><img src={Avatar} alt="Avatar" style={styles.avatar} /></Link>
+          <Link to='new'><BiPlus /><VscTriangleDown /></Link>
+          <Link to='profile'><img src={Avatar} alt="Avatar" style={styles.avatar} /><VscTriangleDown /></Link>
         </div>
       </header>
     )
@@ -51,7 +52,7 @@ const styles = {
     fontSize: '1.25em',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100px',
+    width: '150px',
   },
   avatar: {
     height: '30px',
